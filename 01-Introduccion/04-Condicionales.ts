@@ -1,3 +1,4 @@
+
 // 04-condicionales.ts
 const casado = true;
 if (casado == true){
