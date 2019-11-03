@@ -1,5 +1,5 @@
-const numeroUnoString = prompt("Ingrese numero 1");
-const numeroDosString = prompt("Ingrese numero 2");
-const numeroUno = Number(numeroUnoString);
-const numeroDos = Number(numeroDosString)
-console.log(numeroUno + numeroDos);
+const numeroUnoString = prompt("Ingresa numero 1"); //STRING
+const numeroDosString = prompt("Ingresa numero 2"); //STRING
+const numeroUno = Number (numeroUnoString);
+const numeroDos = Number (numeroDosString);
+console.log (numeroUno + numeroDos);
