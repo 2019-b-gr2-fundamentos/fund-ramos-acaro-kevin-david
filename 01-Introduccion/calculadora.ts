@@ -4,6 +4,7 @@ const operacion2 = "resta"
 const operacion3 = "multiplicacion"
 const operacion4 = "division"
 const operacion5 = "pendiente de una recta"
+const operacion6 = "distancia de dos puntos"
 
 
 
@@ -51,9 +52,22 @@ if(operaciones == "suma") {
                             const pendienteDeUnaRecta = (puntoY2 - puntoY1)/ (puntoX2 - puntoX1);
                             console.log("El resultado es: ", pendienteDeUnaRecta);
                         }else{
-                    console.log("La operacon es invalida");
-                }
+                            if(operaciones == operacion6){
+                                const numerotresString = prompt("Ingrese puntoY2");
+                                const numerocuatroString = prompt("Ingrese puntoY1");
+                                const numerocincoString = prompt("Ingrese puntoX2");
+                                const numeroseisString = prompt("Ingrese puntoX1");
+                                const puntoY2 = Number(numerotresString); 
+                                const puntoY1 = Number(numerocuatroString); 
+                                const puntoX2 = Number(numerocincoString); 
+                                const puntoX1 = Number(numeroseisString); 
+                                const distanciaDeDosPuntos = (((puntoY2 - puntoY1)^2) + ((puntoX2 - puntoX1))^2)^0.5;
+                                console.log("El resultado es: ", distanciaDeDosPuntos );
+                                }else{
+                                    console.log("La operacon es invalida");
+                            }
+                         }
+                     } 
+                } 
             }
-        } 
-    } 
-}   
+        }   
