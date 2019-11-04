@@ -7,7 +7,7 @@ const operacion5 = "pendiente de una recta"
 
 
 
-if(operaciones == operacion1) {
+if(operaciones == "suma") {
     const numerounoString = prompt("Ingrese primer numero");
     const numerodosString = prompt("Ingrese segundo numero");
     const numero1 = Number(numerounoString); 

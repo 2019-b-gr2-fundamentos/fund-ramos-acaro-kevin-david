@@ -27,4 +27,11 @@ else:
                     puntoX1 = int(input(" Ingrese punto X1\n"))
                     print( "La pendiente de la recta es:", ( puntoY2 - puntoY1 ) / ( puntoX2 - puntoX1 ))
                 else:
-                    print("No es una operacion valida");
+                    if (operacion == "distancia entre dos puntos"):
+                        puntoY2 = int(input(" Ingrese punto Y2\n"))
+                        puntoY1 = int(input(" Ingrese punto Y1\n"))
+                        puntoX2 = int(input(" Ingrese punto X2\n"))
+                        puntoX1 = int(input(" Ingrese punto X1\n"))
+                        print("La pendiente de la recta es:", (((puntoY2 - puntoY1)**2 + (puntoX2 - puntoX1)**2)**0.5))
+                    else:
+                        print("No es una operacion valida")
