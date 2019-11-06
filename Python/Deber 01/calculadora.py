@@ -35,3 +35,4 @@ else:
                         print("La pendiente de la recta es:", (((puntoY2 - puntoY1)**2 + (puntoX2 - puntoX1)**2)**0.5))
                     else:
                         print("No es una operacion valida")
+
