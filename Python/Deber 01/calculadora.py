@@ -3,7 +3,7 @@ operacion = input("Seleccione operacion\n")
 if (operacion == "suma"):
     numero1 = int(input(" Ingrese numero 1\n"))
     numero2 = int(input(" Ingrese numero 2\n"))
-    print ("La suma es:", numero1 + numero2)
+    print("La suma es:", numero1 + numero2)
 else:
     if (operacion == "resta"):
         numero1 = int(input(" Ingrese numero 1\n"))
