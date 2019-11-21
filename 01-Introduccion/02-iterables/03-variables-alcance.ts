@@ -25,7 +25,7 @@ if(true){
 }
 }
 
-let arregloFloron = [0,0,1,0,0];
+let arregloFloron = [0,0,0,0,0];
 let existeFloron = false;
 
 for(let i=0; i<5; i++){ //Bloque 1
