@@ -1,4 +1,4 @@
-const arregloNumeros = [1,2,3,4,5,9,6,7,8,9,10];
+var arregloNumeros = [1, 2, 3, 4, 5, 9, 6, 7, 8, 9, 10];
 //Acceder
 // Necesito: Indice
 console.log(arregloNumeros[6]); // 7
@@ -13,18 +13,15 @@ arregloNumeros.pop();
 arregloNumeros.splice(1, 0, 1.2);
 console.log(arregloNumeros);
 //o borrar
-arregloNumeros.splice(7, 1,);
+arregloNumeros.splice(7, 1);
 console.log(arregloNumeros);
 // BUSCAR INDICE DE UN ELEMENTO! :D
 arregloNumeros.indexOf(5); // 5
-console.log(arregloNumeros.indexOf(5))
+console.log(arregloNumeros.indexOf(5));
 arregloNumeros.indexOf(7); // 
-console.log(arregloNumeros.indexOf(7))
-
+console.log(arregloNumeros.indexOf(7));
 arregloNumeros[0] = 999; // actualizar el arreglo
-
 console.log(arregloNumeros);
-
 /*
 Pseudocodigo para utilizar el splice que añade
 1) crear el arreglo
