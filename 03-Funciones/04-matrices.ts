@@ -3,23 +3,33 @@ const arregloMatriz = [
     [3,4,5],
     [6,7,8],
     [9],
-    1
 ]
-
-
 function compararMatriz(
-    matrizUno: number[][],
-    matrizDos: number[][]
+    matrizUno: number [][],
+    matrizDos: number [][]
 ): boolean {
-
-
-
-
+    const matrizUnoPrimeraDimension = obtenerPrimeraDimension(
+        matrizUno
+        );
+    const matrizUnoSegundaDimension = obtenerSegundaDimension(
+        matrizUno
+        );
+    const matrizDosPrimeraDimension = obtenerPrimeraDimension(
+        matrizDos
+        );
+    const matrizDosSegundaDimension = obtenerSegundaDimension(
+        matrizDos
+        );
+        console.log(matrizUnoPrimeraDimension)
+        console.log(matrizUnoSegundaDimension)
+        console.log(matrizDosPrimeraDimension)
+        console.log(matrizDosSegundaDimension)
     return true;
 }
-function obtenerPrimeraDimension(matrizUno: number[][]):number | false{
-    //VALIDACIONES
-    const esValido = verificarTodosLosElementosDeUnArregloSonArreglo(matrizUno);
+
+function obtenerPrimeraDimension(matrizUno: number [][]): number | boolean{//use | para anadir mas tipos
+    //validaciones
+    const esValido = verificarTodosLosElementosDeUnArregloSonarreglo(matrizUno);
     if(esValido){
         const primeraDimensionArreglo = matrizUno.length;
         return primeraDimensionArreglo;
@@ -28,40 +38,60 @@ function obtenerPrimeraDimension(matrizUno: number[][]):number | false{
     }
 }
 
-function obtenerSegundaDimension(matrizUno: number[][]): number | false{
-    const esValido = verificarTodosLosElementosDeUnArregloSonArreglo(matrizUno);
-    let longitudActualMaxima = 0; //Auxiliar
-    let longitudActualMinima = 0; // Auxiliar
-
-    for(let i = 0; i< matrizUno.length; i++){
+function obtenerSegundaDimension(matrizUno: number [][]): number | boolean{
+    const esValido = verificarTodosLosElementosDeUnArregloSonarreglo(matrizUno);
+    if(esValido){
+    let longitudActualMax = 0; // auxiliar
+    let longitudActualMin = -1; //auxiliar
+    for(let i = 0; i < matrizUno.length; i++){
         const elementoActual = matrizUno[i]; //arreglo
-        const longitudActual = elementoActual.length;  // segunda dimension    
-        if(longitudActualMaxima < longitudActual){
-            longitudActualMaxima = longitudActual;
+        const longitudActual = elementoActual.length; //segunda dimension
+        if(longitudActualMax < longitudActual){
+            longitudActualMax = longitudActual;
         }
-        if(longitudActualMinima == -1 ){
-            longitudActualMinima = longitudActual
-        }
-        if(longitudActual < longitudActualMinima && longitudActualMinima >=0){
-            longitudActualMinima = longitudActual;
-
-        }
+        if(longitudActualMin == -1){
+            longitudActualMin = longitudActual;
+        }else{
+            if(longitudActual < longitudActualMin){
+                longitudActualMin = longitudActual
+            }
         }
     }
-
-}
-
-function verificarTodosLosElementosDeUnArregloSonArreglo(arreglo: any[]): boolean {
-    for(let i = 0; i< arreglo.length; i++){
-        const elementoActual = arreglo[i];
-        const esUnArreglo = typeof elementoActual == "object" && elementoActual.indexOf;
-        if(!esUnArreglo)
-        console.log("No es un arreglo");
+    if(longitudActualMax != longitudActualMin){
         return false;
+    }else{
+        return matrizUno[0].length;
+        }
+    }else{
+    return false
+    }
 }
+//usar funcion para ver si es arreglo
 
-
+function verificarTodosLosElementosDeUnArregloSonarreglo (arreglo: any[]
+    ):boolean{
+    for(let i = 0 ; i < arreglo.length; i++){
+        const elementoActual = arreglo[i];
+        const esUnArreglo = typeof elementoActual == 'object' &&
+        elementoActual.indexOf; // truty
+        if(!esUnArreglo){
+            alert("No es un arreglo");
+            return false;
+        }
+    }
+    return true;
+}
 
 function main(){
-
+    const matrizUno = [
+        [1,2],
+        [3]
+    ];
+    const matrizDos = [
+        [1,2],
+        [3,4],
+    ];
+    compararMatriz(matrizUno, matrizDos);
 }
+
+main();
