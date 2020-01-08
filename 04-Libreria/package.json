@@ -1,0 +1,16 @@
+{
+  "name": "f-kevin-ramos",
+  "version": "1.0.0",
+  "description": "mi libreria",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "fundamentos",
+    "epn",
+    "libreria"
+  ],
+  "author": "kevin ramos",
+  "license": "ISC"
+}
