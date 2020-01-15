@@ -22,7 +22,15 @@ console.log("La respuesta es:", respuesta4);
 const distanciaLibreria = require('f-kevin-ramos/lib/distancia-dospuntos');
 const respuesta5 = distanciaLibreria(1,2,3,4);
 console.log("La respuesta es:", respuesta5);
+<<<<<<< Updated upstream
 
 const areaCirculoLibreria = require('f-kevin-ramos/lib/area-circulo');
 const respuesta6 = areaCirculoLibreria(4);
 console.log("La respuesta es:", respuesta6);
+=======
+var areaCirculoLibreria = require('f-kevin-ramos/lib/area-circulo');
+var respuesta6 = areaCirculoLibreria(4);
+console.log("La respuesta es:", respuesta6);
+var  PI  =  require ('f-kevin-ramos /lib /pi' ) ;
+console.log ( 'La constante pi es:' ,  PI )
+>>>>>>> Stashed changes
