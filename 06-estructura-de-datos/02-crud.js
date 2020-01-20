@@ -2,7 +2,40 @@
 //const prompts = require('prompts')
 var prompts = require('prompts');
 function main() {
-    obtenerDatosAnimalPerrito();
+    //npm uninstall -g tsc -> WINDOWS
+    //npm install -g typescript -> WINDOWS
+    //npm uninstall -g tsc -> WINDOWS
+    //obtenerDatosAnimalPerrito(); //Asincrona
+    // Sincrona
+    obtenerDatosAnimalPerritoSincrono()
+        .then()
+        .catch(); //-> Promesa// sincrona
+}
+async;
+function obtenerDatosAnimalPerritoSincrono() {
+    //Paradigma de programacion 
+    //SINCRONO VS ASINCRONO
+    console.log('Inicio');
+    var preguntas = [
+        {
+            type: 'number',
+            name: 'edad',
+            message: 'Puedes darme tu edad?'
+        },
+        {
+            type: 'text',
+            name: 'nombre',
+            message: 'Puedes darme tu nombre?'
+        },
+        {
+            type: 'text',
+            name: 'cedula',
+            message: 'Puedes darme tu cedula?'
+        }
+    ];
+    var RespuestaEdad = await, prompts = (preguntas);
+    console.log('respuesta', RespuestaEdad);
+    console.log('Fin');
 }
 function obtenerDatosAnimalPerrito() {
     //Paradigma de programacion 
