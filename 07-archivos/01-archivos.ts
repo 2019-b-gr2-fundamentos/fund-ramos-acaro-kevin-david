@@ -1,7 +1,20 @@
 import { leerArchivo } from "./02-leer-archivos";
+import { escribirArchivo } from "./03-escribir-archivo";
 
 function main (){
-    leerArchivo();
+    const textoLeido = leerArchivo('./ejemplo.txt);
+    
+    const  nuevoContenido ='TENGO HAMBRE :( \n';
+    escribirArchivo('./ejemplo.txt','');
+    
+
+    console.log(textoLeido + nuevoContenido);
 }
 
 main();
+
+
+
+
+
+
