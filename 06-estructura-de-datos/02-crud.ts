@@ -17,6 +17,7 @@ obtenerDatosAnimalPerritoSincrono()
 
 
 }
+
 async function obtenerDatosAnimalPerritoSincrono(){
     //Paradigma de programacion 
     //SINCRONO VS ASINCRONO
@@ -37,7 +38,8 @@ async function obtenerDatosAnimalPerritoSincrono(){
             name: 'cedula',
             message: 'Puedes darme tu cedula?'
         }
-    ]
+    ];
+
     const RespuestaEdad = await prompts(preguntas);
     console.log('respuesta',RespuestaEdad);
        console.log('Fin');
@@ -87,5 +89,4 @@ console.log('Fin');
 }
 
 main();
-
 
