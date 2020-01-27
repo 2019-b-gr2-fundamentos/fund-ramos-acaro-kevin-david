@@ -9,7 +9,24 @@ async function main(){
         './ejemplo.txt'
     );
     console.log('contenidoArchivo', contenidoArchivo);
-    const arregloCagadoDeArchivo = JSON.parse(contenidoArchivo);
+//PARSEAR -> TEXTO -> Estructura de memoria
+/*
+{
+    "nombre: "Adrian"
+}
+<universidad>
+*/
+let arregloCagadoDeArchivo; // undefined
+
+try{
+    arregloCagadoDeArchivo = JSON
+    .parse('MAMA');
+}catch(error){
+    //arregloCagadoDeArchivo = [];
+    console.error('Error parseando archivo');
+}
+
+    
     const arregloEstudiantes: Estudiante[] = arregloCagadoDeArchivo;
     const arregloPreguntas = [
         {

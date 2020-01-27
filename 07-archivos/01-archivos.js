@@ -47,7 +47,14 @@ function main() {
                     contador = 1;
                     contenidoArchivo = _02_leer_archivos_1.leerArchivo('./ejemplo.txt');
                     console.log('contenidoArchivo', contenidoArchivo);
-                    arregloCagadoDeArchivo = JSON.parse(contenidoArchivo);
+                    try {
+                        arregloCagadoDeArchivo = JSON
+                            .parse('MAMA');
+                    }
+                    catch (error) {
+                        arregloCagadoDeArchivo = [];
+                        console.error('Error parseando archivo');
+                    }
                     arregloEstudiantes = arregloCagadoDeArchivo;
                     arregloPreguntas = [
                         {
