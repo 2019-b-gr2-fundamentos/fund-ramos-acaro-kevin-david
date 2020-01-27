@@ -37,24 +37,37 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var _02_leer_archivos_1 = require("./02-leer-archivos");
+var _03_escribir_archivo_1 = require("./03-escribir-archivo");
 var prompts = require("prompts");
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var contador, contenidoArchivo, arregloCagadoDeArchivo, arregloEstudiantes, arregloPreguntas, respuestaEstudianteUno, nuevoRegistroUno, respuestaEstudianteDos, nuevoRegistroDos, idABuscar, indiceEncontrado, nombreAEditar, buscar, estudianteEncontrado;
+        var contenidoArchivo, arregloCagadoDeArchivo, contador, minimoId, arregloEstudiantes, arregloPreguntas, respuestaEstudianteUno, nuevoRegistroUno, respuestaEstudianteDos, nuevoRegistroDos, idABuscar, indiceEncontrado, nombreAEditar, buscar, estudianteEncontrado, arregloTexto;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    contador = 1;
                     contenidoArchivo = _02_leer_archivos_1.leerArchivo('./ejemplo.txt');
                     console.log('contenidoArchivo', contenidoArchivo);
                     try {
                         arregloCagadoDeArchivo = JSON
-                            .parse('MAMA');
+                            .parse(contenidoArchivo);
                     }
                     catch (error) {
                         arregloCagadoDeArchivo = [];
                         console.error('Error parseando archivo');
                     }
+                    contador = 1;
+                    minimoId = -1;
+                    arregloCagadoDeArchivo
+                        .foreach(// NO ENVIAN NADA Y NO SE DEVUELVE NADA
+                    //ITERAR
+                    function (valorActual) {
+                        var idActual = valorActual.id;
+                        if (idActual > minimoId) {
+                            minimoId = idActual;
+                        }
+                    });
+                    minimoId = minimoId + 1;
+                    contador = minimoId;
                     arregloEstudiantes = arregloCagadoDeArchivo;
                     arregloPreguntas = [
                         {
@@ -123,6 +136,9 @@ function main() {
                         return valorActual.nombre == buscar.nombre;
                     });
                     console.log(estudianteEncontrado);
+                    arregloTexto = JSON.stringify(arregloEstudiantes);
+                    console.log(arregloTexto);
+                    _03_escribir_archivo_1.escribirArchivo('./ejemplo.txt', arregloTexto);
                     return [2 /*return*/];
             }
         });

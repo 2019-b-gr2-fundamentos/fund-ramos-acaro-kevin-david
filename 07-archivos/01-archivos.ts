@@ -4,7 +4,7 @@ import { Estudiante } from "./interfaces/estudiante.inteface";
 import * as prompts from 'prompts';
 async function main(){
 
-    let contador = 1;
+    
     const contenidoArchivo = leerArchivo(
         './ejemplo.txt'
     );
@@ -20,12 +20,50 @@ let arregloCagadoDeArchivo; // undefined
 
 try{
     arregloCagadoDeArchivo = JSON
-    .parse('MAMA');
+                .parse(contenidoArchivo);
 }catch(error){
-    //arregloCagadoDeArchivo = [];
+    arregloCagadoDeArchivo = [];
     console.error('Error parseando archivo');
+    
 }
 
+let contador = 1;
+
+//OPERADORES
+let minimoId = -1;
+arregloCagadoDeArchivo
+    .foreach( // NO ENVIAN NADA Y NO SE DEVUELVE NADA
+        //ITERAR
+        function(valorActual){
+            const idActual = valorActual.id;
+            if(idActual > minimoId){
+                minimoId = idActual
+            }
+        }
+    );  
+    minimoId = minimoId +1;
+    contador = minimoId;  
+
+/*
+try{
+    console.log('1');
+    console.log('2');
+    console.log('3');
+    console.log(0/0);
+    console.log(""/0);
+    //***; error sintaxis
+    //var a = b; 
+    //let = a;
+    //let = a; // ta mal
+
+    throw new ReferenceError("EL ARCHIVO ESTA MAL PARSEADO");
+    console.log('4');
+    console.log('5');
+}catch(error){
+    console.log(error)
+    console.log(':3');
+}
+*/
     
     const arregloEstudiantes: Estudiante[] = arregloCagadoDeArchivo;
     const arregloPreguntas = [
@@ -100,7 +138,12 @@ try{
             );
         console.log(estudianteEncontrado)
         
-
+    const arregloTexto = JSON.stringify(arregloEstudiantes);
+    console.log(arregloTexto);
+    escribirArchivo(
+        './ejemplo.txt',
+    arregloTexto
+    );
 
 
 
