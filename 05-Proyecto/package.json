@@ -9,10 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< Updated upstream
-    "f-kevin-ramos": "^1.0.0"
-=======
-    "f-kevin-ramos": "^1.1.1"
->>>>>>> Stashed changes
+    "f-kevin-ramos": "^1.0.7"
   }
 }
