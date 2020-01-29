@@ -56,7 +56,56 @@ const respuestaFilter = arregloEstudiantes
         )
         console.log('respuestaFilter,',respuestaFilter);
         console.log('arregloEstudiantes', arregloEstudiantes)
+//AND -> every ( todos cumplan) / OR solo uno cumpla
 
+//Some -> Devuelve verdadero o falso dependiendo de la cond.
+// Si alguno cumple Devuelve TRUE
+// Si ninguno cumple devuelve FALSE
+// ENVIAMOS -> Condicion
+// RECIBIMOS -> Booleano
+
+const respuestaSome = arregloEstudiantes
+            .some(
+                function(valorActual, i, arreglo){
+                    const condicion = valorActual.nota <4;
+                    // CONDICION TRUTY O TRUE
+                    return condicion;
+                }
+            );
+    console.log('respuestaSome', respuestaSome);
+    console.log('respuestaEstudiantes', arregloEstudiantes)
+
+//Every -> Devuelve verdadero o falso dependiendo de la cond.
+// Si todos cumplen la cond TRUE
+// Si alguno no cumple la condicion FALSE
+// ENVIAMOS -> Condicion
+// RECIBIMOS -> Booleano
+
+const respuestaEvery = arregloEstudiantes
+            .every(
+                function(valorActual, i, arreglo){
+                    const condicion = valorActual.nota >=4;
+                    // CONDICION TRUTY O TRUE
+                    return condicion;
+                }
+            );
+    console.log('respuestaEvery', respuestaEvery);
+
+    console.log('respuestaEstudiantes', arregloEstudiantes)    
+//Reduce -> devuelve un valor con el calculo aplicado
+//ENVIAMOS -> CALCULO
+//RECIBIR -> VALOR
+            const respuestaReduce = arregloEstudiantes
+            .reduce(
+                function(acumulador, valorActual){// funcion
+                    const calculo = acumulador  - valorActual.nota 
+                    return calculo
+                },
+                100 //valor inicial del acumulador
+            );
+            console.log('respuestaReduce', respuestaReduce);
+            console.log('promedio', respuestaReduce/arregloEstudiantes.length)
+            console.log( 'respuestaEstudiantes', arregloEstudiantes)
 
     } 
 main();
