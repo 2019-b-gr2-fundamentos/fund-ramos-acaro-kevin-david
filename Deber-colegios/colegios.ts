@@ -6,7 +6,7 @@ let colegios: datosColegios[] = [];
 
 async function crearDatosColegios(){
    
-    const preguntas1 = [
+    const preguntas:any = [
         {
             type: 'text',
             name: 'nombre',
@@ -33,7 +33,7 @@ async function crearDatosColegios(){
             message: 'Ingrese el numero de estudiantes'
         }
     ];
-        const respuestaPreguntas = await prompts(preguntas1);
+        const respuestaPreguntas = await prompts(preguntas);
         const nuevoRegistroColegio = {
             Aid: id,
             nombre: respuestaPreguntas.nombre,
