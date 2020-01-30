@@ -36,23 +36,48 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+
+var _02_leer_archivos_1 = require("./02-leer-archivos");
+var _03_escribir_archivo_1 = require("./03-escribir-archivo");
 var prompts = require("prompts");
 function main() {
     return __awaiter(this, void 0, void 0, function () {
-        var contador, contenidoArchivo, arregloCargadoDeArchivo, arregloEstudiantes, arregloPreguntas, respuestaEstudianteUno, nuevoRegistroUno, respuestaEstudianteDos, nuevoRegistroDos, idABuscar, indiceEncontrado, nombreAEditar, buscar, estudianteEncontrado, textoLeido, nuevoContenido;
+        var contenidoArchivo, arregloCagadoDeArchivo, contador, minimoId, arregloEstudiantes, arregloPreguntas, respuestaEstudianteUno, nuevoRegistroUno, respuestaEstudianteDos, nuevoRegistroDos, idABuscar, indiceEncontrado, nombreAEditar, buscar, estudianteEncontrado, arregloTexto;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    contador = 1;
-                    contenidoArchivo = leerArchivo('./ejemplo.txt');
+                    contenidoArchivo = _02_leer_archivos_1.leerArchivo('./ejemplo.txt');
                     console.log('contenidoArchivo', contenidoArchivo);
-                    arregloCargadoDeArchivo = JSON.parse(contenidoArchivo);
-                    arregloEstudiantes = arregloCargadoDeArchivo;
+                    try {
+                        arregloCagadoDeArchivo = JSON
+                            .parse(contenidoArchivo);
+                    }
+                    catch (error) {
+                        arregloCagadoDeArchivo = [];
+                        console.error('Error parseando archivo');
+                    }
+                    contador = 1;
+                    minimoId = -1;
+                    arregloCagadoDeArchivo
+                        .foreach(// NO ENVIAN NADA Y NO SE DEVUELVE NADA
+                    //ITERAR
+                    function (valorActual) {
+                        var idActual = valorActual.id;
+                        if (idActual > minimoId) {
+                            minimoId = idActual;
+                        }
+                    });
+                    minimoId = minimoId + 1;
+                    contador = minimoId;
+                    arregloEstudiantes = arregloCagadoDeArchivo;
+
                     arregloPreguntas = [
                         {
                             type: 'text',
                             name: 'nombre',
-                            message: 'ingresa tu nombre'
+
+                            message: 'Ingresa tu nombre'
+
                         }
                     ];
                     return [4 /*yield*/, prompts(arregloPreguntas)];
@@ -62,8 +87,10 @@ function main() {
                         id: contador,
                         nombre: respuestaEstudianteUno.nombre
                     };
-                    contador = contador + 1,
-                        arregloEstudiantes.push(nuevoRegistroUno);
+
+                    contador = contador + 1;
+                    arregloEstudiantes.push(nuevoRegistroUno);
+
                     return [4 /*yield*/, prompts(arregloPreguntas)];
                 case 2:
                     respuestaEstudianteDos = _a.sent();
@@ -73,29 +100,34 @@ function main() {
                     };
                     contador = contador + 1;
                     arregloEstudiantes.push(nuevoRegistroDos);
-                    console.log('Cual usuario quieres editar?');
+
+                    console.log(arregloEstudiantes);
+                    console.log('\nCual usuario quieres editar?');
                     console.log(arregloEstudiantes);
                     return [4 /*yield*/, prompts({
-                            type: 'number',
+                            type: 'text',
                             name: 'id',
-                            massage: 'Ingresa el ID del registro a Editar'
+                            message: 'Ingresa el ID del registro a Editar'
                         })];
                 case 3:
                     idABuscar = _a.sent();
-                    indiceEncontrado = arregloEstudiantes.findIndex(// return CONDICION -> 
+                    indiceEncontrado = arregloEstudiantes.findIndex(//return  CONDICION -> 
                     function (valorActual, indice, arreglo) {
-                        //console.log(valorActual);
+                        console.log(valorActual);
                         //console.log(indice);
                         //console.log(arreglo);
-                        return valorActual.id == 2; //Nos devuelve el INDICE
-                    } // SI encuentra nos devuelve el indice
-                    // No encuentra
+                        return valorActual.id == idABuscar.id; // Nos devuelve el INDICE
+                    } //Si encuentra nos devuelve el indice
+                    //No encoentra
+
                     );
                     console.log('Indice encontrado:', indiceEncontrado);
                     return [4 /*yield*/, prompts({
                             type: 'text',
                             name: 'nombre',
-                            massage: 'Ingresa el nuevo nombre'
+
+                            message: 'Ingresa el nuevo nombre'
+
                         })];
                 case 4:
                     nombreAEditar = _a.sent();
@@ -104,23 +136,26 @@ function main() {
                     return [4 /*yield*/, prompts({
                             type: 'text',
                             name: 'nombre',
-                            massage: 'Busca por ID o por NOMBRE'
+
+                            message: 'Buscar por ID o por Nombre'
+
                         })];
                 case 5:
                     buscar = _a.sent();
                     estudianteEncontrado = arregloEstudiantes
-                        .find(function (valorActual) {
+
+                        .find(//Return CONDICION
+                    function (valorActual) {
                         return valorActual.nombre == buscar.nombre;
                     });
                     console.log(estudianteEncontrado);
-                    main().then().catch();
-                    textoLeido = leerArchivo('./ejemplo.txt');
-                    nuevoContenido = 'TENGO HAMBRE :( \n';
-                    escribirArchivo('./ejemplo.txt', '');
-                    console.log(textoLeido + nuevoContenido);
+                    arregloTexto = JSON.stringify(arregloEstudiantes);
+                    console.log(arregloTexto);
+                    _03_escribir_archivo_1.escribirArchivo('./ejemplo.txt', arregloTexto);
+
                     return [2 /*return*/];
             }
         });
     });
 }
-main();
+main().then().catch();
