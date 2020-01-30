@@ -1,3 +1,5 @@
+import {filter} from "./02-filters";
+import
 function main (){
 
     const arregloEstudiantes:any = [
@@ -107,5 +109,25 @@ const respuestaEvery = arregloEstudiantes
             console.log('promedio', respuestaReduce/arregloEstudiantes.length)
             console.log( 'respuestaEstudiantes', arregloEstudiantes)
 
-    } 
+const respuestaFilterNuestro = filter(    
+
+    arregloEstudiantes,
+    function(valorActual, i, arr){
+        console.log('valor:', valorActual);
+        console.log('Indice:', i);
+        console.log('arreglo:', arr);
+        return valorActual.nota >=7;
+}
+);
+ console.log('respuestaFilterNuevo', respuestaFilterNuestro),
+ console.log('arregloEstudiantes', arregloEstudiantes)
+}
+
+const respuestaMapNuestro = map(
+    arregloEstudiantes,
+    function()
+    console.log('valor:', valorActual);
+    return valorActual.nota*;
+)
+
 main();

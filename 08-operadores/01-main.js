@@ -1,5 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var _02_filters_1 = require("./02-filters");
 function main() {
-    const arregloEstudiantes = [
+    var arregloEstudiantes = [
         { id: 1, nombre: 'Adrian', nota: 7 },
         { id: 2, nombre: 'Vicente', nota: 9 },
         { id: 3, nombre: 'Wendy', nota: 4 },
@@ -9,7 +12,7 @@ function main() {
     // OPERADOR - FOREACH
     //ENVIAMOS -> NADA
     //RECIBIMOS -> NADA
-    const respuestaForeach = arregloEstudiantes
+    var respuestaForeach = arregloEstudiantes
         .forEach(function (valorActual, indice, arreglo) {
         console.log(valorActual.nota);
     });
@@ -17,9 +20,9 @@ function main() {
     //Map -> Transformar el arreglo (Mutas el arreglo)
     //ENVIAMOS -> valorActual modificado
     //Recibir -> Nuevo arreglo con valores modificados
-    const respuestaMap = arregloEstudiantes
+    var respuestaMap = arregloEstudiantes
         .map(function (valorActual, i, arreglo) {
-        const nuevoObjeto = {
+        var nuevoObjeto = {
             id: valorActual.id,
             nombre: valorActual.nombre,
             nota20: valorActual.nota * 2
@@ -31,10 +34,10 @@ function main() {
     //Filter -> filtra el arreglo
     //ENVIAMOS -> CONDICION
     //RECIBIR -> Nuevo arreglo con valores filtrados
-    const respuestaFilter = arregloEstudiantes
+    var respuestaFilter = arregloEstudiantes
         .filter(function (valorActual, i, arreglo) {
-        const condicion7 = valorActual.nota >= 7;
-        const condicion5 = valorActual.nota < 5;
+        var condicion7 = valorActual.nota >= 7;
+        var condicion5 = valorActual.nota < 5;
         //condicion es un truty
         return condicion7 || condicion5;
     });
@@ -46,9 +49,9 @@ function main() {
     // Si ninguno cumple devuelve FALSE
     // ENVIAMOS -> Condicion
     // RECIBIMOS -> Booleano
-    const respuestaSome = arregloEstudiantes
+    var respuestaSome = arregloEstudiantes
         .some(function (valorActual, i, arreglo) {
-        const condicion = valorActual.nota < 4;
+        var condicion = valorActual.nota < 4;
         // CONDICION TRUTY O TRUE
         return condicion;
     });
@@ -59,9 +62,9 @@ function main() {
     // Si alguno no cumple la condicion FALSE
     // ENVIAMOS -> Condicion
     // RECIBIMOS -> Booleano
-    const respuestaEvery = arregloEstudiantes
+    var respuestaEvery = arregloEstudiantes
         .every(function (valorActual, i, arreglo) {
-        const condicion = valorActual.nota >= 4;
+        var condicion = valorActual.nota >= 4;
         // CONDICION TRUTY O TRUE
         return condicion;
     });
@@ -70,14 +73,22 @@ function main() {
     //Reduce -> devuelve un valor con el calculo aplicado
     //ENVIAMOS -> CALCULO
     //RECIBIR -> VALOR
-    const respuestaReduce = arregloEstudiantes
+    var respuestaReduce = arregloEstudiantes
         .reduce(function (acumulador, valorActual) {
-        const calculo = acumulador - valorActual.nota;
+        var calculo = acumulador - valorActual.nota;
         return calculo;
     }, 100 //valor inicial del acumulador
     );
     console.log('respuestaReduce', respuestaReduce);
     console.log('promedio', respuestaReduce / arregloEstudiantes.length);
     console.log('respuestaEstudiantes', arregloEstudiantes);
+    var respuestaFilterNuestro = _02_filters_1.filter(arregloEstudiantes, function (valorActual, i, arr) {
+        console.log('valor:', valorActual);
+        console.log('Indice:', i);
+        console.log('arreglo:', arr);
+        return valorActual.nota >= 7;
+    });
+    console.log('respuestaFilterNuevo', respuestaFilterNuestro),
+        console.log('arregloEstudiantes', arregloEstudiantes);
 }
 main();
