@@ -1,4 +1,4 @@
-export function filter( arreglo:any[],numero:number,
+export function map( arreglo:any[],numero:number,
     funcion:(valorActual:any,indice:number,arreglo:any[])=>boolean):any[]
     {
 const arregloMapeado=[]

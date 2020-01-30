@@ -1,5 +1,5 @@
 import {filter} from "./02-filters";
-import
+import {map} from "./03-map"
 function main (){
 
     const arregloEstudiantes:any = [
@@ -125,9 +125,15 @@ const respuestaFilterNuestro = filter(
 
 const respuestaMapNuestro = map(
     arregloEstudiantes,
-    function()
-    console.log('valor:', valorActual);
-    return valorActual.nota*;
-)
+    function(valorActual,i,arr){
+        console.log('valor:', valorActual);
+        console.log('arreglo:', arr);
+        console.log('Indice:', i)
+        return valorActual.nota >=7;
+    return valorActual.nota*5;
+    }
+);
+console.log('respuestaMapNuevo',respuestaMapNuestro)
+
 
 main();
