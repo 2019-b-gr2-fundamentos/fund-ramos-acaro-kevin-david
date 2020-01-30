@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _02_filters_1 = require("./02-filters");
+var _03_map_1 = require("./03-map");
 function main() {
     var arregloEstudiantes = [
         { id: 1, nombre: 'Adrian', nota: 7 },
@@ -90,5 +91,14 @@ function main() {
     });
     console.log('respuestaFilterNuevo', respuestaFilterNuestro),
         console.log('arregloEstudiantes', arregloEstudiantes);
+    var number1 = 5;
+    var respuestaMapNuestro = _03_map_1.map(arregloEstudiantes, number1, function (valorActual, i, arreglo) {
+        console.log('valor:', valorActual);
+        console.log('arreglo:', arreglo);
+        console.log('Indice:', i);
+        return valorActual.nota;
+    });
+    console.log('respuestaMapNuevo', respuestaMapNuestro),
+    ;
 }
 main();

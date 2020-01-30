@@ -121,19 +121,20 @@ const respuestaFilterNuestro = filter(
 );
  console.log('respuestaFilterNuevo', respuestaFilterNuestro),
  console.log('arregloEstudiantes', arregloEstudiantes)
-}
+
+let number1 = 5,   
 
 const respuestaMapNuestro = map(
     arregloEstudiantes,
-    function(valorActual,i,arr){
+    number1,    
+    function(valorActual,i,arreglo){
         console.log('valor:', valorActual);
-        console.log('arreglo:', arr);
-        console.log('Indice:', i)
-        return valorActual.nota >=7;
-    return valorActual.nota*5;
-    }
+        console.log('arreglo:', arreglo);
+        console.log('Indice:', i);   
+    return valorActual.nota;
+}
 );
-console.log('respuestaMapNuevo',respuestaMapNuestro)
 
+console.log('respuestaMapNuevo',respuestaMapNuestro),
 
-main();
+main()
