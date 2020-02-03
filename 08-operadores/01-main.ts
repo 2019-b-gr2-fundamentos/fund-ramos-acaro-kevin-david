@@ -122,7 +122,7 @@ const respuestaFilterNuestro = filter(
  console.log('respuestaFilterNuevo', respuestaFilterNuestro),
  console.log('arregloEstudiantes', arregloEstudiantes)
 
-let number1 = 5,   
+let number1 = 5   
 
 const respuestaMapNuestro = map(
     arregloEstudiantes,
@@ -135,6 +135,7 @@ const respuestaMapNuestro = map(
 }
 );
 
-console.log('respuestaMapNuevo',respuestaMapNuestro),
+console.log('respuestaMapNuevo',respuestaMapNuestro)
+}
 
 main()

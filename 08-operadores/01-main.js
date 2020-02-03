@@ -98,7 +98,6 @@ function main() {
         console.log('Indice:', i);
         return valorActual.nota;
     });
-    console.log('respuestaMapNuevo', respuestaMapNuestro),
-    ;
+    console.log('respuestaMapNuevo', respuestaMapNuestro);
 }
 main();

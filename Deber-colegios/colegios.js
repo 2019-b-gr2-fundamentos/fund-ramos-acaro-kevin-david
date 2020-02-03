@@ -164,7 +164,7 @@ function editarColegio() {
                 case 2:
                     colegioAeditar = _a.sent();
                     respuestaCampo = colegioAeditar.campoAEditar;
-                    if (!(respuestaCampo == 'nombre' || '1' || '1.nombre')) return [3 /*break*/, 4];
+                    if (!(respuestaCampo == 'nombre')) return [3 /*break*/, 4];
                     return [4 /*yield*/, prompts({
                             type: 'text',
                             name: 'nuevoColegio',

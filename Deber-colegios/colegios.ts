@@ -95,7 +95,7 @@ async function editarColegio(){
         message: '¿Que cosa quiere editar?'
     });
     const respuestaCampo = colegioAeditar.campoAEditar;
-    if(respuestaCampo == 'nombre' || '1'|| '1.nombre'){
+    if(respuestaCampo == 'nombre'){
         const nuevoColegio1 = await prompts({
             type: 'text',
             name: 'nuevoColegio',
