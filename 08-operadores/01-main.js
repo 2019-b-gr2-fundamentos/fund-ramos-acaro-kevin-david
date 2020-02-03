@@ -93,7 +93,7 @@ function main() {
         console.log('arregloEstudiantes', arregloEstudiantes);
     var number1 = 5;
     var respuestaMapNuestro = _03_map_1.map(arregloEstudiantes, number1, function (valorActual, i, arreglo) {
-        console.log('valor:', valorActual);
+        console.log('valor:', valorActual * 5);
         console.log('arreglo:', arreglo);
         console.log('Indice:', i);
         return valorActual.nota;

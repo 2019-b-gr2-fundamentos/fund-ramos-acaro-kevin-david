@@ -18,7 +18,12 @@ console.log ( arregluito);
 console.log('a',a);
 console.log('b',b);
 
-miOtroArregluito = arregluito;// ref -> Direccion Memoria
+miOtroArregluito = [
+    ...arregluito,
+    //...arregluito
+]; // ref -> Direccion Memoria
+
+
 //Asignar a mi otro arregluito una nueva direccion de memoria 
 // 1 -> For llenamos un nuevo arreglo
 // 2 -> Filter-> Siempre true -> Nuevo arreglo
@@ -35,6 +40,20 @@ console.log ('arregluito', arregluito);
 console.log ('miOtroArregluito', miOtroArregluito);
 console.log('a',a);
 console.log('b',b);
-}
 
+const adrian = {
+    id: 1,
+    nombre: 'Adrian',
+    sueldo: 1.12
+};
+
+const soloElNombre = adrian ;
+console.log( 'adrian', adrian),
+console.log('soloElNombre', soloElNombre);
+delete adrian.nombre; //Eliminar el nombre del objeto
+soloElNombre['edad'] = 22;
+console.log( 'adrian', adrian);
+console.log('soloElNombre', soloElNombre);
+
+}
 main();

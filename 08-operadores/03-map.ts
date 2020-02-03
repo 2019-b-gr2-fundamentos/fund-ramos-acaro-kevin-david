@@ -1,12 +1,13 @@
-export function map( arreglo:any[],numero:number,
+export function map( arregloOriginal:any[],numero:number,
     funcion:(valorActual:any,indice?:number,arreglo?:any[])=>boolean):any[]
     {
 const arregloMapeado=[]
+const arreglo = [...arregloOriginal]
 for (let i=0;i<arreglo.length;i++){
-    const respuestaFuncion=funcion(arreglo[i],i,arreglo);
-if(respuestaFuncion==true){
-arregloMapeado.push(arreglo[i])*(numero);
-}
+    const clon = [...arreglo]
+    const respuestaFuncion=funcion(clon[i],i,clon);
+    arregloMapeado.push(respuestaFuncion);
+
 }
 
 return arregloMapeado;
