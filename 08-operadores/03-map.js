@@ -7,14 +7,15 @@ var __spreadArrays = (this && this.__spreadArrays) || function () {
     return r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-function map(arregloOriginal, numero, funcion) {
-    var arregloMapeado = [];
-    var arreglo = __spreadArrays(arregloOriginal);
+function map(arregloOriginal, funcion) {
+    var nuevoArreglo = [];
+    var arreglo = __spreadArrays(arregloOriginal); // le hago un Clon
     for (var i = 0; i < arreglo.length; i++) {
-        var clon = __spreadArrays(arreglo);
-        var respuestaFuncion = funcion(clon[i], i, clon);
-        arregloMapeado.push(respuestaFuncion);
+        var clon = __spreadArrays(arreglo); // Crear clon en cada iteracion 
+        var respuestaFuncion = funcion(clon[i], i, __spreadArrays(arreglo));
+        nuevoArreglo.push(respuestaFuncion);
     }
-    return arregloMapeado;
+    ;
+    return nuevoArreglo;
 }
 exports.map = map;

@@ -1,38 +1,38 @@
-export function calcular(funcion, numUno, NumDos){
+export function calcular(funcion, numUno, numDos){
     const valorInicial = 10;
-    return funcion(numUno, NumDos, valorInicial)
-}
-export function sumar(numUno,NumDos,valorInicial){
-    return numUno + NumDos;
-}
-export function restar(numUno,NumDos,valorInicial){
-    return numUno - NumDos;
-}
-calcular(sumar, 1, 2);
+    return funcion(numUno, numDos, valorInicial);
+};
+export function sumar(numUno, numDos, valorInicial){
+    return numUno + numDos;
+};
+
+
+calcular(sumar, 1, 2); // 3
 calcular(
-    function restar(numUno,NumDos,valorInicial){
-    return numUno - NumDos
-    },
-    5,
-    3
-);
-export function filter(
-    arreglo: any[],
-    funcion: (valorActual: any, 
+    function (numUno, numDos, valorInicial){
+    return numUno - numDos;
+    }
+    ,5 
+    ,3
+); // 2
+
+export function filter(arreglo: any[],
+    funcion: (
+        valorActual:any, 
         indice?: number, 
-        arrreglo?: any) => boolean
-):any[] {
+        arreglo?: any[])=> boolean
+): any[] {
     const arregloFiltrado = [];
     for(let i = 0; i < arreglo.length; i++){
         const respuestaFuncion = funcion(
-            arreglo[i],
-            i,
-            arreglo,
+            arreglo[i],// -> valorActual
+            //i, // -> Indice
+            //arreglo, // -> Arreglo
         );
         if(respuestaFuncion == true){
             arregloFiltrado.push(arreglo[i]);
-        }
-        
-    }
+        };
+    };
+
     return arregloFiltrado;
 }

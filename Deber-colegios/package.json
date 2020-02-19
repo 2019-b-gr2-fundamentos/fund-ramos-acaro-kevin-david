@@ -11,6 +11,8 @@
   "dependencies": {
     "@types/prompts": "^2.0.3",
     "inquirer": "^7.0.4",
-    "prompts": "^2.3.0"
+    "prompts": "^2.3.0",
+    "typescript": "^3.7.5",
+    "typescript-parser": "^2.6.1"
   }
 }

@@ -1,14 +1,29 @@
-import { Colegios } from "./interfaces/colegios-interfaces";
-import * as prompts from 'prompts';
 
-let id = 1;
-let colegios: Colegios[ ] = [ ];
+import * as prompts from 'prompts';
+import {Colegios} from './Interfaces/colegios-interfaces'
+import{leerArchivo} from 'C:/Users/Kevin Ramos/Documents/GitHub/fund-ramos-acaro-kevin-david/07-archivos/02-leer-archivos';
+import{escribirArchivo} from 'C:/Users/Kevin Ramos/Documents/GitHub/fund-ramos-acaro-kevin-david/07-archivos/03-escribir-archivo';
+
+let id = 0;
+const contenidoArchivo = leerArchivo('./colegios.txt');
+let arregloColegiosCargadoDeArchivo = JSON.parse(contenidoArchivo);
+let minimoAid = 0;
+    arregloColegiosCargadoDeArchivo
+        .forEach(
+            function(valorActual){
+                const idActual = valorActual.Pid;
+                if(idActual > minimoAid){
+                    minimoAid = idActual;
+                }
+            }
+        );
+    minimoAid = minimoAid + 1;
+            id = minimoAid;
+
+let colegios: Colegios[] = arregloColegiosCargadoDeArchivo;
 
 async function crearDatosColegios(){
-
-   
-    const preguntas:any = [
-
+    const preguntaColegios:any = [
         {
             type: 'text',
             name: 'nombre',
@@ -32,135 +47,135 @@ async function crearDatosColegios(){
         {
             type: 'text',
             name: 'numeroEstudiantes',
-
-            message: 'Ingrese el numero de estudiantes'
+            message: 'Inserte numero de estudiantes'
         }
-    ];
-        const respuestaPreguntas = await prompts(preguntas);
-
-        const nuevoRegistroColegio = {
-            Aid: id,
-            nombre: respuestaPreguntas.nombre,
-            apodo: respuestaPreguntas.apodo,
-            sector: respuestaPreguntas.sector,
-            fundacion: respuestaPreguntas.fundacion,
-            numeroEstudiantes: respuestaPreguntas.numeroEstudiantes,
+];
+    const respuestaPreguntas = await prompts(preguntaColegios);
+    const nuevoRegistroColegios = {
+        id: id,
+        nombre: respuestaPreguntas.nombre,
+        apodo: respuestaPreguntas.apodo,
+        sector: respuestaPreguntas.sector,
+        fundacion: respuestaPreguntas.fundacion,
+        numeroEstudiantes: respuestaPreguntas.numeroEstudiantes,
+        
     };
-    id = id + 1;
-    colegios.push(nuevoRegistroColegio);
-    posibilidades().then().catch();
-
+id = id + 1;
+    colegios.push(nuevoRegistroColegios);
+    const ColegiosStringeado = JSON.stringify(colegios);
+    escribirArchivo('./colegios.txt', ColegiosStringeado);
+    opciones().then().catch();
 };
-async function posibilidades(){
+async function opciones(){
     const preguntas = await prompts({
         type: 'text',
         name: 'respuestas',
-        message: '¿Que quieres hacer? \n 1-Crear un colegio \n 2-Ver los colegios  \n 3-Actualizar colegios \n 4-Eliminar colegios \n 5-Salir'
+        message: 'Opciones: \n 1-crear  un colegio \n 2-leer los los colegios \n 3-actualizar colegios \n 4-eliminar colegios \n 5-Salir'
     });
     const respuesta1 = preguntas.respuestas;
     if(respuesta1 == 1){
         crearDatosColegios().then().catch();
         
     }else if(respuesta1 == 2){
-        leerRegistros().then().catch();
+        leerColegios().then().catch();
 
     }else if(respuesta1 == 3){
-        editarColegio().then().catch();
+        editarColegios().then().catch();
 
     }else if(respuesta1 == 4){
-        eliminarRegistro().then().catch();
+        eliminarColegios().then().catch();
 
     }else if(respuesta1 == 5){
-        console.log('ADIOS');
+        console.log('Adios');
     }else{
-        console.log('Elija una opcion valida');
-        posibilidades().then().catch();
+        console.log('Opcion no valida');
+        opciones().then().catch();
     };
     return preguntas.respuestas;
 };
-async function leerRegistros(){
-    console.log('Los colegios son:', colegios);
-    posibilidades().then().catch();
+async function leerColegios(){
+    console.log('Registro de Perros:', colegios);
+    opciones().then().catch();
 };
-async function editarColegio(){
-    const AidAEditar = await prompts({
+async function editarColegios(){
+    const ColegiosIdAEditar = await prompts({
         type: 'number',
-        name: 'Aid',
-        message: 'Ingresa el aid del colegio disponible'
+        name: 'id',
+        message: 'Ingrese el id del colegio que quiere editar'
     });
-    const AidEncontrado = colegios.findIndex(
+    const idEncontrado = colegios.findIndex(
         function(valorActual){
-        return valorActual.Aid == AidAEditar.Aid
+        return valorActual.id == ColegiosIdAEditar.id
         }
     );
-    const colegioAeditar = await prompts({
+    const queDeseaEditar = await prompts({
         type: 'text',
-        name: 'campoAEditar',
-        message: '¿Que cosa quiere editar?'
+        name: 'opcionAEditar',
+        message: '¿Que opcion quiere cambiar?'
     });
-    const respuestaCampo = colegioAeditar.campoAEditar;
-    if(respuestaCampo == 'nombre'){
-        const nuevoColegio1 = await prompts({
+    const respuestaOpciones = queDeseaEditar.opcionAEditar;
+    if(respuestaOpciones == 'nombre'){
+        const nuevonombre = await prompts({
             type: 'text',
-            name: 'nuevoColegio',
-            message: 'Ingrese el nuevo colegio'
+            name: 'nuevosnombres',
+            message: 'Ingrese el nombre del nuevo colegio'
         });
-        colegios[AidEncontrado].nombre = nuevoColegio1.nuevoColegio;
-    }else if(respuestaCampo == 'apodo'){
-        const nuevoApodos = await prompts({
+        colegios[idEncontrado].nombre = nuevonombre.nuevosnombres;
+    }else if(respuestaOpciones == 'apodo'){
+        const nuevoapodo = await prompts({
             type: 'text',
-            name: 'nuevoApodo',
-            message: 'Ingrese el nuevo apodo del colegio'
+            name: 'nuevosApodos',
+            message: 'Ingrese el apodo del colegio'
         });
-        colegios[AidEncontrado].apodo = nuevoApodos.nuevoApodo;
-    }else if(respuestaCampo == 'sector'){
-        const nuevoSector1 = await prompts({
+        colegios[idEncontrado].apodo = nuevoapodo.nuevosApodos;
+    }else if(respuestaOpciones == 'sector'){
+        const nuevosector = await prompts({
             type: 'text',
-            name: 'nuevoSector',
-            message: 'Ingrese el nuevo '
+            name: 'nuevosSector',
+            message: 'Ingrese el sector del colegio'
         });
-        colegios[AidEncontrado].sector = nuevoSector1.nuevoSector;
-    }else if(respuestaCampo == 'fundacion'){
-        const nuevaFundacion1 = await prompts({
-            type: 'text',
-            name: 'nuevaFundacion',
-            message: 'Ingrese la nueva fundacion del colegio'
+        colegios[idEncontrado].sector = nuevosector.nuevosSector;
+    }else if(respuestaOpciones == 'fundacion'){
+        const nuevaFundacion = await prompts({
+            type: 'number',
+            name: 'nuevaFechaFundacion',
+            message: 'Ingrese la fecha de fundacion'
         });
-        colegios[AidEncontrado].fundacion = nuevaFundacion1.nuevaFundacion;
-    }else if(respuestaCampo == 'numeroEstudiantes'){
-        const nuevosEstudiantes1 = await prompts({
-            type: 'text',
-            name: 'estudiantes',
-            message: 'Ingrese el nuevo numero de estudiantes'
+        colegios[idEncontrado].fundacion = nuevaFundacion.nuevaFechaFundacion;
+    }else if(respuestaOpciones == 'numeroEstudiantes'){
+        const nuevonumeroEstudiantes = await prompts({
+            type: 'number',
+            name: 'nuevosnumeroEstudiantes',
+            message: 'Ingrese el nuevo newnumeroEstudiantes'
         });
-        colegios[AidEncontrado].numeroEstudiantes = nuevosEstudiantes1.estudiantes;
+        colegios[idEncontrado].numeroEstudiantes = nuevonumeroEstudiantes.nuevosnumeroEstudiantes;
     }else{
-        console.log('Ingrese una opcion valida');
+        console.log('Ingrese un campo valido');
     };
-    console.log('El registro de colegios actualizado es:', colegios);
-    posibilidades().then().catch();
+    console.log('El registro de los colegios nuevo es :', colegios);
+    opciones().then().catch();
     return colegios
 };
-async function eliminarRegistro(){
-    const AidAEliminar = await prompts({
+async function eliminarColegios(){
+    const ColegiosidAEliminar = await prompts({
         type: 'number',
-        name: 'Aid',
-        message: 'Ingrese el Aid del colegio  que quiere eliminar'
+        name: 'id',
+        message: 'Ingrese el id del colegios que quiere eliminar'
     });
-    const AidEncontrado = colegios.findIndex(
+    const idEncontrado = colegios.findIndex(
         function(valorActual){
-        return valorActual.Aid == AidAEliminar.Aid
-        }
-    );
-    colegios.splice(AidEncontrado, 1);
-    console.log('El nuevo registro de colegios es:', colegios);
-    posibilidades().then().catch();
+        return valorActual.id ==  ColegiosidAEliminar.id
+        });
+
+    colegios.splice(idEncontrado, 1);
+    const registroBorrado = JSON.stringify(colegios);
+    escribirArchivo('./colegios.txt', registroBorrado);
+    console.log('El nuevo registro de Perros es:', colegios);
+    opciones().then().catch();
     return colegios
 }
 
 function main(){
     crearDatosColegios().then().catch();
-
 }
-
 main();
