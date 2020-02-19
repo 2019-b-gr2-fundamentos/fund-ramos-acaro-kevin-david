@@ -6,7 +6,9 @@ let colegios: Colegios[ ] = [ ];
 
 async function crearDatosColegios(){
 
-    const preguntasColegios:any = [
+   
+    const preguntas:any = [
+
         {
             type: 'text',
             name: 'nombre',
@@ -30,11 +32,12 @@ async function crearDatosColegios(){
         {
             type: 'text',
             name: 'numeroEstudiantes',
-            message: 'Inserte numero de estudiantes'
-        },
-];
 
-        const respuestaPreguntas = await prompts(preguntasColegios);
+            message: 'Ingrese el numero de estudiantes'
+        }
+    ];
+        const respuestaPreguntas = await prompts(preguntas);
+
         const nuevoRegistroColegio = {
             Aid: id,
             nombre: respuestaPreguntas.nombre,
@@ -93,44 +96,44 @@ async function editarColegio(){
     const colegioAeditar = await prompts({
         type: 'text',
         name: 'campoAEditar',
-        message: '¿Que colegio desea editar?'
+        message: '¿Que cosa quiere editar?'
     });
     const respuestaCampo = colegioAeditar.campoAEditar;
     if(respuestaCampo == 'nombre'){
-        const nuevoColegio = await prompts({
+        const nuevoColegio1 = await prompts({
             type: 'text',
             name: 'nuevoColegio',
             message: 'Ingrese el nuevo colegio'
         });
-        colegios[AidEncontrado].nombre = nuevoColegio.nuevoColegio;
+        colegios[AidEncontrado].nombre = nuevoColegio1.nuevoColegio;
     }else if(respuestaCampo == 'apodo'){
-        const nuevoApodo = await prompts({
+        const nuevoApodos = await prompts({
             type: 'text',
             name: 'nuevoApodo',
             message: 'Ingrese el nuevo apodo del colegio'
         });
-        colegios[AidEncontrado].apodo = nuevoApodo.nuevoApodo;
+        colegios[AidEncontrado].apodo = nuevoApodos.nuevoApodo;
     }else if(respuestaCampo == 'sector'){
-        const nuevoSector = await prompts({
+        const nuevoSector1 = await prompts({
             type: 'text',
             name: 'nuevoSector',
             message: 'Ingrese el nuevo '
         });
-        colegios[AidEncontrado].sector = nuevoSector.nuevoSector;
+        colegios[AidEncontrado].sector = nuevoSector1.nuevoSector;
     }else if(respuestaCampo == 'fundacion'){
-        const nuevaFundacion = await prompts({
+        const nuevaFundacion1 = await prompts({
             type: 'text',
             name: 'nuevaFundacion',
             message: 'Ingrese la nueva fundacion del colegio'
         });
-        colegios[AidEncontrado].fundacion = nuevaFundacion.nuevaFundacion;
+        colegios[AidEncontrado].fundacion = nuevaFundacion1.nuevaFundacion;
     }else if(respuestaCampo == 'numeroEstudiantes'){
-        const nuevosEstudiantes = await prompts({
+        const nuevosEstudiantes1 = await prompts({
             type: 'text',
             name: 'estudiantes',
             message: 'Ingrese el nuevo numero de estudiantes'
         });
-        colegios[AidEncontrado].numeroEstudiantes = nuevosEstudiantes.estudiantes;
+        colegios[AidEncontrado].numeroEstudiantes = nuevosEstudiantes1.estudiantes;
     }else{
         console.log('Ingrese una opcion valida');
     };

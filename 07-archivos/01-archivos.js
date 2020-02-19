@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+
 var _02_leer_archivos_1 = require("./02-leer-archivos");
 var _03_escribir_archivo_1 = require("./03-escribir-archivo");
 var prompts = require("prompts");
@@ -69,11 +70,14 @@ function main() {
                     minimoId = minimoId + 1;
                     contador = minimoId;
                     arregloEstudiantes = arregloCagadoDeArchivo;
+
                     arregloPreguntas = [
                         {
                             type: 'text',
                             name: 'nombre',
+
                             message: 'Ingresa tu nombre'
+
                         }
                     ];
                     return [4 /*yield*/, prompts(arregloPreguntas)];
@@ -83,8 +87,10 @@ function main() {
                         id: contador,
                         nombre: respuestaEstudianteUno.nombre
                     };
+
                     contador = contador + 1;
                     arregloEstudiantes.push(nuevoRegistroUno);
+
                     return [4 /*yield*/, prompts(arregloPreguntas)];
                 case 2:
                     respuestaEstudianteDos = _a.sent();
@@ -94,6 +100,7 @@ function main() {
                     };
                     contador = contador + 1;
                     arregloEstudiantes.push(nuevoRegistroDos);
+
                     console.log(arregloEstudiantes);
                     console.log('\nCual usuario quieres editar?');
                     console.log(arregloEstudiantes);
@@ -112,12 +119,15 @@ function main() {
                         return valorActual.id == idABuscar.id; // Nos devuelve el INDICE
                     } //Si encuentra nos devuelve el indice
                     //No encoentra
+
                     );
                     console.log('Indice encontrado:', indiceEncontrado);
                     return [4 /*yield*/, prompts({
                             type: 'text',
                             name: 'nombre',
+
                             message: 'Ingresa el nuevo nombre'
+
                         })];
                 case 4:
                     nombreAEditar = _a.sent();
@@ -126,11 +136,14 @@ function main() {
                     return [4 /*yield*/, prompts({
                             type: 'text',
                             name: 'nombre',
+
                             message: 'Buscar por ID o por Nombre'
+
                         })];
                 case 5:
                     buscar = _a.sent();
                     estudianteEncontrado = arregloEstudiantes
+
                         .find(//Return CONDICION
                     function (valorActual) {
                         return valorActual.nombre == buscar.nombre;
@@ -139,6 +152,7 @@ function main() {
                     arregloTexto = JSON.stringify(arregloEstudiantes);
                     console.log(arregloTexto);
                     _03_escribir_archivo_1.escribirArchivo('./ejemplo.txt', arregloTexto);
+
                     return [2 /*return*/];
             }
         });

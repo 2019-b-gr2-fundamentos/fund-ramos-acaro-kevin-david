@@ -41,11 +41,13 @@ var id = 1;
 var colegios = [];
 function crearDatosColegios() {
     return __awaiter(this, void 0, void 0, function () {
-        var preguntasColegios, respuestaPreguntas, nuevoRegistroColegio;
+
+        var preguntas, respuestaPreguntas, nuevoRegistroColegio;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    preguntasColegios = [
+                    preguntas = [
+
                         {
                             type: 'text',
                             name: 'nombre',
@@ -72,7 +74,8 @@ function crearDatosColegios() {
                             message: 'Inserte numero de estudiantes'
                         },
                     ];
-                    return [4 /*yield*/, prompts(preguntasColegios)];
+
+                    return [4 /*yield*/, prompts(preguntas)];
                 case 1:
                     respuestaPreguntas = _a.sent();
                     nuevoRegistroColegio = {
@@ -143,7 +146,7 @@ function leerRegistros() {
 ;
 function editarColegio() {
     return __awaiter(this, void 0, void 0, function () {
-        var AidAEditar, AidEncontrado, colegioAeditar, respuestaCampo, nuevoColegio, nuevoApodo, nuevoSector, nuevaFundacion, nuevosEstudiantes;
+        var AidAEditar, AidEncontrado, colegioAeditar, respuestaCampo, nuevoColegio1, nuevoApodos, nuevoSector1, nuevaFundacion1, nuevosEstudiantes1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, prompts({
@@ -159,7 +162,7 @@ function editarColegio() {
                     return [4 /*yield*/, prompts({
                             type: 'text',
                             name: 'campoAEditar',
-                            message: '¿Que colegio desea editar?'
+                            message: '¿Que cosa quiere editar?'
                         })];
                 case 2:
                     colegioAeditar = _a.sent();
@@ -171,8 +174,8 @@ function editarColegio() {
                             message: 'Ingrese el nuevo colegio'
                         })];
                 case 3:
-                    nuevoColegio = _a.sent();
-                    colegios[AidEncontrado].nombre = nuevoColegio.nuevoColegio;
+                    nuevoColegio1 = _a.sent();
+                    colegios[AidEncontrado].nombre = nuevoColegio1.nuevoColegio;
                     return [3 /*break*/, 13];
                 case 4:
                     if (!(respuestaCampo == 'apodo')) return [3 /*break*/, 6];
@@ -182,8 +185,8 @@ function editarColegio() {
                             message: 'Ingrese el nuevo apodo del colegio'
                         })];
                 case 5:
-                    nuevoApodo = _a.sent();
-                    colegios[AidEncontrado].apodo = nuevoApodo.nuevoApodo;
+                    nuevoApodos = _a.sent();
+                    colegios[AidEncontrado].apodo = nuevoApodos.nuevoApodo;
                     return [3 /*break*/, 13];
                 case 6:
                     if (!(respuestaCampo == 'sector')) return [3 /*break*/, 8];
@@ -193,8 +196,8 @@ function editarColegio() {
                             message: 'Ingrese el nuevo '
                         })];
                 case 7:
-                    nuevoSector = _a.sent();
-                    colegios[AidEncontrado].sector = nuevoSector.nuevoSector;
+                    nuevoSector1 = _a.sent();
+                    colegios[AidEncontrado].sector = nuevoSector1.nuevoSector;
                     return [3 /*break*/, 13];
                 case 8:
                     if (!(respuestaCampo == 'fundacion')) return [3 /*break*/, 10];
@@ -204,8 +207,8 @@ function editarColegio() {
                             message: 'Ingrese la nueva fundacion del colegio'
                         })];
                 case 9:
-                    nuevaFundacion = _a.sent();
-                    colegios[AidEncontrado].fundacion = nuevaFundacion.nuevaFundacion;
+                    nuevaFundacion1 = _a.sent();
+                    colegios[AidEncontrado].fundacion = nuevaFundacion1.nuevaFundacion;
                     return [3 /*break*/, 13];
                 case 10:
                     if (!(respuestaCampo == 'numeroEstudiantes')) return [3 /*break*/, 12];
@@ -215,8 +218,8 @@ function editarColegio() {
                             message: 'Ingrese el nuevo numero de estudiantes'
                         })];
                 case 11:
-                    nuevosEstudiantes = _a.sent();
-                    colegios[AidEncontrado].numeroEstudiantes = nuevosEstudiantes.estudiantes;
+                    nuevosEstudiantes1 = _a.sent();
+                    colegios[AidEncontrado].numeroEstudiantes = nuevosEstudiantes1.estudiantes;
                     return [3 /*break*/, 13];
                 case 12:
                     console.log('Ingrese una opcion valida');
