@@ -1,39 +1,40 @@
-import { datosColegios } from "./interfaces/colegios-interfaces";
+import { Colegios } from "./interfaces/colegios-interfaces";
 import * as prompts from 'prompts';
 
 let id = 1;
-let colegios: datosColegios[] = [];
+let colegios: Colegios[ ] = [ ];
 
 async function crearDatosColegios(){
-   
-    const preguntas1 = [
+
+    const preguntasColegios:any = [
         {
             type: 'text',
             name: 'nombre',
-            message: 'Inserte el nombre delcolegio'
+            message: 'Inserte el nombre del colegio'
         },
         {
             type: 'text',
             name: 'apodo',
-            message: 'Inserte el apodo de su colegio'
+            message: 'Inserte el apodo del colegio'
         },
         {
             type: 'text',
             name: 'sector',
-            message: 'Inserte el sector del colegio '
+            message: 'Inserte el sector del colegior'
         },
         {
-            type: 'number',
+            type: 'text',
             name: 'fundacion',
-            message: 'Ingrese el año de fundacion'
+            message: 'Inserte la fecha de fundacion del colegio'
         },
         {
-            type: 'number',
+            type: 'text',
             name: 'numeroEstudiantes',
-            message: 'Ingrese el numero de estudiantes'
-        }
-    ];
-        const respuestaPreguntas = await prompts(preguntas1);
+            message: 'Inserte numero de estudiantes'
+        },
+];
+
+        const respuestaPreguntas = await prompts(preguntasColegios);
         const nuevoRegistroColegio = {
             Aid: id,
             nombre: respuestaPreguntas.nombre,

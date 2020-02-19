@@ -1,0 +1,16 @@
+{
+  "name": "deber-colegios2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "(tsc  estructuras-colegios.ts --target ES5 || echo) && node estructuras-colegios.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompts": "^2.3.1",
+    "typescript": "^3.7.5",
+    "typescript-parser": "^2.6.1"
+  }
+}

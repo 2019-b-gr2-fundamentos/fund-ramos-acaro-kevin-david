@@ -36,16 +36,30 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var prompts = require("prompts");
-var id = 1;
-var colegios = [];
+var prompts = require("C:/Users/Kevin Ramos/Documents/GitHub/fund-ramos-acaro-kevin-david/Deber-colegios/node_modules/@types/prompts/index");
+var _02_leer_archivos_1 = require("C:/Users/Kevin Ramos/Documents/GitHub/fund-ramos-acaro-kevin-david/07-archivos/02-leer-archivos");
+var _03_escribir_archivo_1 = require("C:/Users/Kevin Ramos/Documents/GitHub/fund-ramos-acaro-kevin-david/07-archivos/03-escribir-archivo");
+var id = 0;
+var contenidoArchivo = _02_leer_archivos_1.leerArchivo('./colegios.txt');
+var arregloColegiosCargadoDeArchivo = JSON.parse(contenidoArchivo);
+var minimoAid = 0;
+arregloColegiosCargadoDeArchivo
+    .forEach(function (valorActual) {
+    var idActual = valorActual.Pid;
+    if (idActual > minimoAid) {
+        minimoAid = idActual;
+    }
+});
+minimoAid = minimoAid + 1;
+id = minimoAid;
+var colegios = arregloColegiosCargadoDeArchivo;
 function crearDatosColegios() {
     return __awaiter(this, void 0, void 0, function () {
-        var preguntasColegios, respuestaPreguntas, nuevoRegistroColegio;
+        var preguntaColegios, respuestaPreguntas, nuevoRegistroColegios, ColegiosStringeado;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    preguntasColegios = [
+                    preguntaColegios = [
                         {
                             type: 'text',
                             name: 'nombre',
@@ -70,13 +84,13 @@ function crearDatosColegios() {
                             type: 'text',
                             name: 'numeroEstudiantes',
                             message: 'Inserte numero de estudiantes'
-                        },
+                        }
                     ];
-                    return [4 /*yield*/, prompts(preguntasColegios)];
+                    return [4 /*yield*/, prompts(preguntaColegios)];
                 case 1:
                     respuestaPreguntas = _a.sent();
-                    nuevoRegistroColegio = {
-                        Aid: id,
+                    nuevoRegistroColegios = {
+                        id: id,
                         nombre: respuestaPreguntas.nombre,
                         apodo: respuestaPreguntas.apodo,
                         sector: respuestaPreguntas.sector,
@@ -84,15 +98,17 @@ function crearDatosColegios() {
                         numeroEstudiantes: respuestaPreguntas.numeroEstudiantes,
                     };
                     id = id + 1;
-                    colegios.push(nuevoRegistroColegio);
-                    posibilidades().then().catch();
+                    colegios.push(nuevoRegistroColegios);
+                    ColegiosStringeado = JSON.stringify(colegios);
+                    _03_escribir_archivo_1.escribirArchivo('./colegios.txt', ColegiosStringeado);
+                    opciones().then().catch();
                     return [2 /*return*/];
             }
         });
     });
 }
 ;
-function posibilidades() {
+function opciones() {
     return __awaiter(this, void 0, void 0, function () {
         var preguntas, respuesta1;
         return __generator(this, function (_a) {
@@ -100,7 +116,7 @@ function posibilidades() {
                 case 0: return [4 /*yield*/, prompts({
                         type: 'text',
                         name: 'respuestas',
-                        message: '¿Que quieres hacer? \n 1-Crear un colegio \n 2-Ver los colegios  \n 3-Actualizar colegios \n 4-Eliminar colegios \n 5-Salir'
+                        message: 'Opciones: \n 1-crear  un colegio \n 2-leer los los colegios \n 3-actualizar colegios \n 4-eliminar colegios \n 5-Salir'
                     })];
                 case 1:
                     preguntas = _a.sent();
@@ -109,20 +125,20 @@ function posibilidades() {
                         crearDatosColegios().then().catch();
                     }
                     else if (respuesta1 == 2) {
-                        leerRegistros().then().catch();
+                        leerColegios().then().catch();
                     }
                     else if (respuesta1 == 3) {
-                        editarColegio().then().catch();
+                        editarColegios().then().catch();
                     }
                     else if (respuesta1 == 4) {
-                        eliminarRegistro().then().catch();
+                        eliminarColegios().then().catch();
                     }
                     else if (respuesta1 == 5) {
-                        console.log('ADIOS');
+                        console.log('Adios');
                     }
                     else {
-                        console.log('Elija una opcion valida');
-                        posibilidades().then().catch();
+                        console.log('Opcion no valida');
+                        opciones().then().catch();
                     }
                     ;
                     return [2 /*return*/, preguntas.respuestas];
@@ -131,124 +147,126 @@ function posibilidades() {
     });
 }
 ;
-function leerRegistros() {
+function leerColegios() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            console.log('Los colegios son:', colegios);
-            posibilidades().then().catch();
+            console.log('Registro de Perros:', colegios);
+            opciones().then().catch();
             return [2 /*return*/];
         });
     });
 }
 ;
-function editarColegio() {
+function editarColegios() {
     return __awaiter(this, void 0, void 0, function () {
-        var AidAEditar, AidEncontrado, colegioAeditar, respuestaCampo, nuevoColegio, nuevoApodo, nuevoSector, nuevaFundacion, nuevosEstudiantes;
+        var ColegiosIdAEditar, idEncontrado, queDeseaEditar, respuestaOpciones, nuevonombre, nuevoapodo, nuevosector, nuevaFundacion, nuevonumeroEstudiantes;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, prompts({
                         type: 'number',
-                        name: 'Aid',
-                        message: 'Ingresa el aid del colegio disponible'
+                        name: 'id',
+                        message: 'Ingrese el id del colegio que quiere editar'
                     })];
                 case 1:
-                    AidAEditar = _a.sent();
-                    AidEncontrado = colegios.findIndex(function (valorActual) {
-                        return valorActual.Aid == AidAEditar.Aid;
+                    ColegiosIdAEditar = _a.sent();
+                    idEncontrado = colegios.findIndex(function (valorActual) {
+                        return valorActual.id == ColegiosIdAEditar.id;
                     });
                     return [4 /*yield*/, prompts({
                             type: 'text',
-                            name: 'campoAEditar',
-                            message: '¿Que colegio desea editar?'
+                            name: 'opcionAEditar',
+                            message: '¿Que opcion quiere cambiar?'
                         })];
                 case 2:
-                    colegioAeditar = _a.sent();
-                    respuestaCampo = colegioAeditar.campoAEditar;
-                    if (!(respuestaCampo == 'nombre')) return [3 /*break*/, 4];
+                    queDeseaEditar = _a.sent();
+                    respuestaOpciones = queDeseaEditar.opcionAEditar;
+                    if (!(respuestaOpciones == 'nombre')) return [3 /*break*/, 4];
                     return [4 /*yield*/, prompts({
                             type: 'text',
-                            name: 'nuevoColegio',
-                            message: 'Ingrese el nuevo colegio'
+                            name: 'nuevosnombres',
+                            message: 'Ingrese el nombre del nuevo colegio'
                         })];
                 case 3:
-                    nuevoColegio = _a.sent();
-                    colegios[AidEncontrado].nombre = nuevoColegio.nuevoColegio;
+                    nuevonombre = _a.sent();
+                    colegios[idEncontrado].nombre = nuevonombre.nuevosnombres;
                     return [3 /*break*/, 13];
                 case 4:
-                    if (!(respuestaCampo == 'apodo')) return [3 /*break*/, 6];
+                    if (!(respuestaOpciones == 'apodo')) return [3 /*break*/, 6];
                     return [4 /*yield*/, prompts({
                             type: 'text',
-                            name: 'nuevoApodo',
-                            message: 'Ingrese el nuevo apodo del colegio'
+                            name: 'nuevosApodos',
+                            message: 'Ingrese el apodo del colegio'
                         })];
                 case 5:
-                    nuevoApodo = _a.sent();
-                    colegios[AidEncontrado].apodo = nuevoApodo.nuevoApodo;
+                    nuevoapodo = _a.sent();
+                    colegios[idEncontrado].apodo = nuevoapodo.nuevosApodos;
                     return [3 /*break*/, 13];
                 case 6:
-                    if (!(respuestaCampo == 'sector')) return [3 /*break*/, 8];
+                    if (!(respuestaOpciones == 'sector')) return [3 /*break*/, 8];
                     return [4 /*yield*/, prompts({
                             type: 'text',
-                            name: 'nuevoSector',
-                            message: 'Ingrese el nuevo '
+                            name: 'nuevosSector',
+                            message: 'Ingrese el sector del colegio'
                         })];
                 case 7:
-                    nuevoSector = _a.sent();
-                    colegios[AidEncontrado].sector = nuevoSector.nuevoSector;
+                    nuevosector = _a.sent();
+                    colegios[idEncontrado].sector = nuevosector.nuevosSector;
                     return [3 /*break*/, 13];
                 case 8:
-                    if (!(respuestaCampo == 'fundacion')) return [3 /*break*/, 10];
+                    if (!(respuestaOpciones == 'fundacion')) return [3 /*break*/, 10];
                     return [4 /*yield*/, prompts({
-                            type: 'text',
-                            name: 'nuevaFundacion',
-                            message: 'Ingrese la nueva fundacion del colegio'
+                            type: 'number',
+                            name: 'nuevaFechaFundacion',
+                            message: 'Ingrese la fecha de fundacion'
                         })];
                 case 9:
                     nuevaFundacion = _a.sent();
-                    colegios[AidEncontrado].fundacion = nuevaFundacion.nuevaFundacion;
+                    colegios[idEncontrado].fundacion = nuevaFundacion.nuevaFechaFundacion;
                     return [3 /*break*/, 13];
                 case 10:
-                    if (!(respuestaCampo == 'numeroEstudiantes')) return [3 /*break*/, 12];
+                    if (!(respuestaOpciones == 'numeroEstudiantes')) return [3 /*break*/, 12];
                     return [4 /*yield*/, prompts({
-                            type: 'text',
-                            name: 'estudiantes',
-                            message: 'Ingrese el nuevo numero de estudiantes'
+                            type: 'number',
+                            name: 'nuevosnumeroEstudiantes',
+                            message: 'Ingrese el nuevo newnumeroEstudiantes'
                         })];
                 case 11:
-                    nuevosEstudiantes = _a.sent();
-                    colegios[AidEncontrado].numeroEstudiantes = nuevosEstudiantes.estudiantes;
+                    nuevonumeroEstudiantes = _a.sent();
+                    colegios[idEncontrado].numeroEstudiantes = nuevonumeroEstudiantes.nuevosnumeroEstudiantes;
                     return [3 /*break*/, 13];
                 case 12:
-                    console.log('Ingrese una opcion valida');
+                    console.log('Ingrese un campo valido');
                     _a.label = 13;
                 case 13:
                     ;
-                    console.log('El registro de colegios actualizado es:', colegios);
-                    posibilidades().then().catch();
+                    console.log('El registro de los colegios nuevo es :', colegios);
+                    opciones().then().catch();
                     return [2 /*return*/, colegios];
             }
         });
     });
 }
 ;
-function eliminarRegistro() {
+function eliminarColegios() {
     return __awaiter(this, void 0, void 0, function () {
-        var AidAEliminar, AidEncontrado;
+        var ColegiosidAEliminar, idEncontrado, registroBorrado;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0: return [4 /*yield*/, prompts({
                         type: 'number',
-                        name: 'Aid',
-                        message: 'Ingrese el Aid del colegio  que quiere eliminar'
+                        name: 'id',
+                        message: 'Ingrese el id del colegios que quiere eliminar'
                     })];
                 case 1:
-                    AidAEliminar = _a.sent();
-                    AidEncontrado = colegios.findIndex(function (valorActual) {
-                        return valorActual.Aid == AidAEliminar.Aid;
+                    ColegiosidAEliminar = _a.sent();
+                    idEncontrado = colegios.findIndex(function (valorActual) {
+                        return valorActual.id == ColegiosidAEliminar.id;
                     });
-                    colegios.splice(AidEncontrado, 1);
-                    console.log('El nuevo registro de colegios es:', colegios);
-                    posibilidades().then().catch();
+                    colegios.splice(idEncontrado, 1);
+                    registroBorrado = JSON.stringify(colegios);
+                    _03_escribir_archivo_1.escribirArchivo('./colegios.txt', registroBorrado);
+                    console.log('El nuevo registro de Perros es:', colegios);
+                    opciones().then().catch();
                     return [2 /*return*/, colegios];
             }
         });
