@@ -1,0 +1,1 @@
+[{"posicion":1,"valor":0},{"posicion":2,"valor":0},{"posicion":3,"valor":0},{"posicion":4,"valor":0},{"posicion":5,"valor":0},{"posicion":6,"valor":0},{"posicion":7,"valor":0},{"posicion":8,"valor":0},{"posicion":9,"valor":0}]

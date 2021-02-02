@@ -1,0 +1,14 @@
+{
+  "name": "juego",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "go": "( tsc correcion.ts --target ES5 || echo) && node correcion.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompts": "^2.3.0"
+  }
+}

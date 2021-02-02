@@ -19,3 +19,7 @@ console.log("La respuesta es:", respuesta5);
 var areaCirculoLibreria = require('f-kevin-ramos/lib/area-circulo');
 var respuesta6 = areaCirculoLibreria(4);
 console.log("La respuesta es:", respuesta6);
+var  PI  =  require ('f-kevin-ramos /lib /pi' ) ;
+console.log ( 'La constante pi es:' ,  PI )
+
+
